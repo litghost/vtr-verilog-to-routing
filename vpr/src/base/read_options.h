@@ -23,6 +23,7 @@ struct t_options {
     argparse::ArgValue<e_circuit_format> circuit_format;
 
     argparse::ArgValue<std::string> out_file_prefix;
+    argparse::ArgValue<std::string> constraints_file;
     argparse::ArgValue<std::string> pad_loc_file;
     argparse::ArgValue<std::string> write_rr_graph_file;
     argparse::ArgValue<std::string> read_rr_graph_file;
@@ -41,7 +42,7 @@ struct t_options {
     argparse::ArgValue<bool> do_power;
 
     /* Graphics Options */
-    argparse::ArgValue<bool> show_graphics; //Enable argparse::ArgValue<int>eractive graphics?
+    argparse::ArgValue<bool> show_graphics; ///<Enable argparse::ArgValue<int>eractive graphics?
     argparse::ArgValue<int> GraphPause;
     argparse::ArgValue<bool> save_graphics;
     argparse::ArgValue<std::string> graphics_commands;
@@ -51,6 +52,7 @@ struct t_options {
     argparse::ArgValue<bool> show_version;
     argparse::ArgValue<size_t> num_workers;
     argparse::ArgValue<bool> timing_analysis;
+    argparse::ArgValue<e_timing_update_type> timing_update_type;
     argparse::ArgValue<bool> CreateEchoFile;
     argparse::ArgValue<bool> verify_file_digests;
     argparse::ArgValue<std::string> device_layout;
@@ -96,9 +98,15 @@ struct t_options {
     argparse::ArgValue<float> PlaceInitT;
     argparse::ArgValue<float> PlaceExitT;
     argparse::ArgValue<float> PlaceAlphaT;
+    argparse::ArgValue<float> PlaceAlphaMin;
+    argparse::ArgValue<float> PlaceAlphaMax;
+    argparse::ArgValue<float> PlaceAlphaDecay;
+    argparse::ArgValue<float> PlaceSuccessMin;
+    argparse::ArgValue<float> PlaceSuccessTarget;
     argparse::ArgValue<sched_type> anneal_sched_type;
     argparse::ArgValue<e_place_algorithm> PlaceAlgorithm;
     argparse::ArgValue<e_pad_loc_type> pad_loc_type;
+    argparse::ArgValue<e_block_loc_type> block_loc_type;
     argparse::ArgValue<int> PlaceChanWidth;
     argparse::ArgValue<float> place_rlim_escape_fraction;
     argparse::ArgValue<std::string> place_move_stats_file;
@@ -110,6 +118,7 @@ struct t_options {
     argparse::ArgValue<float> PlaceTimingTradeoff;
     argparse::ArgValue<int> RecomputeCritIter;
     argparse::ArgValue<int> inner_loop_recompute_divider;
+    argparse::ArgValue<int> quench_recompute_divider;
     argparse::ArgValue<float> place_exp_first;
     argparse::ArgValue<float> place_exp_last;
     argparse::ArgValue<float> place_delay_offset;
@@ -134,13 +143,15 @@ struct t_options {
     argparse::ArgValue<float> bend_cost;
     argparse::ArgValue<e_route_type> RouteType;
     argparse::ArgValue<int> RouteChanWidth;
-    argparse::ArgValue<int> min_route_chan_width_hint; //Hint to binary search router about what the min chan width is
+    argparse::ArgValue<int> min_route_chan_width_hint; ///<Hint to binary search router about what the min chan width is
     argparse::ArgValue<bool> verify_binary_search;
     argparse::ArgValue<e_router_algorithm> RouterAlgorithm;
     argparse::ArgValue<int> min_incremental_reroute_fanout;
     argparse::ArgValue<bool> read_rr_edge_metadata;
     argparse::ArgValue<bool> exit_after_first_routing_iteration;
     argparse::ArgValue<e_check_route_option> check_route;
+    argparse::ArgValue<size_t> max_logged_overused_rr_nodes;
+    argparse::ArgValue<bool> generate_rr_node_overuse_report;
 
     /* Timing-driven router options only */
     argparse::ArgValue<float> astar_fac;
